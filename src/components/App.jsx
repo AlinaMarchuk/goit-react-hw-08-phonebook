@@ -7,6 +7,8 @@ import Layout from './Layout/Layout';
 //import RegisterPage from 'pages/RegisterPage/RegisterPage';
 //import ContactsPage from 'pages/ContactsPage/ContactsPage';
 // import styles from './App.module.css';
+import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -18,9 +20,30 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        {/* <Route path="/register" element={<RegisterPage />} /> */}
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+        {/* <Route path="/login" element={<LoginPage />} /> */}
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+        {/* <Route path="/contacts" element={<ContactsPage />} /> */}
         <Route path="*" element={<Navigate to={'/'} />} />
       </Route>
     </Routes>

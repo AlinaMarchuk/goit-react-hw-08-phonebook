@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
+  Box,
   Stack,
   TextField,
   FormControl,
@@ -11,6 +13,7 @@ import {
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { logInOperation } from 'redux/auth/operations';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -21,16 +24,50 @@ const LoginForm = () => {
     event.preventDefault();
   };
 
+  // ==========================================
+
+  const dispatch = useDispatch();
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+    const email = e.currentTarget.elements.email.value;
+    const password = e.currentTarget.elements.password.value;
+    const userInfo = { email, password };
+    console.log(userInfo);
+    dispatch(logInOperation(userInfo));
+  };
+
   return (
-    <form>
-      <Stack direction={'column'} spacing={2}>
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+    <Box
+      onSubmit={onFormSubmit}
+      component="form"
+      sx={{
+        //'& .MuiFormControl-root': { m: 1, width: '25ch' },
+        width: 400,
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <Stack sx={{ width: 400 }} direction={'column'} spacing={2}>
+        <TextField
+          fullWidth
+          required
+          id="outlined-required"
+          label="Email"
+          name="email"
+        />
+        <FormControl
+          fullWidth
+          required
+          // sx={{ m: 1, width: '25ch' }}
+          variant="outlined"
+        >
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
+            name="password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -47,9 +84,11 @@ const LoginForm = () => {
             label="Password"
           />
         </FormControl>
-        <Button variant="contained">Log In</Button>
+        <Button variant="contained" type="submit">
+          Log In
+        </Button>
       </Stack>
-    </form>
+    </Box>
   );
 };
 

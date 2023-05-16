@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Stack,
   TextField,
   FormControl,
@@ -11,6 +12,8 @@ import {
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useDispatch } from 'react-redux';
+import { registerOperation } from 'redux/auth/operations';
 
 // export default function InputAdornments() {
 //     const [showPassword, setShowPassword] = React.useState(false);
@@ -30,17 +33,53 @@ const RegisterForm = () => {
     event.preventDefault();
   };
 
+  //=======================================
+
+  const dispatch = useDispatch();
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+    const name = e.currentTarget.elements.username.value;
+    const email = e.currentTarget.elements.email.value;
+    const password = e.currentTarget.elements.password.value;
+    const userInfo = { name, email, password };
+    console.log(userInfo);
+    dispatch(registerOperation(userInfo));
+  };
+
   return (
-    <form>
+    <Box
+      onSubmit={onFormSubmit}
+      component="form"
+      sx={{
+        // '& .MuiFormControl-root': { m: 1, width: '25ch' },
+        width: 400,
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <Stack direction={'column'} spacing={2}>
-        <TextField id="outlined-basic" label="Username" variant="outlined" />
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <TextField
+          fullWidth
+          required
+          id="outlined-required"
+          label="Username"
+          name="username"
+        />
+        <TextField
+          fullWidth
+          required
+          id="outlined-required"
+          label="Email"
+          name="email"
+        />
+        <FormControl fullWidth variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
+            name="password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -57,9 +96,11 @@ const RegisterForm = () => {
             label="Password"
           />
         </FormControl>
-        <Button variant="contained">Register</Button>
+        <Button variant="contained" type="submit">
+          Register
+        </Button>
       </Stack>
-    </form>
+    </Box>
   );
 };
 

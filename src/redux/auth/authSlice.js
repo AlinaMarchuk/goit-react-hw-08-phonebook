@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  registerOperation,
+  logInOperation,
+  logOutOperation,
+  refreshUserOperation,
+} from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -12,33 +17,102 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled](state, action) {
+    [registerOperation.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logIn.fulfilled](state, action) {
+    [logInOperation.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logOut.fulfilled](state) {
+    [logOutOperation.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
-    [refreshUser.pending](state) {
+    [refreshUserOperation.pending](state) {
       state.isRefreshing = true;
     },
-    [refreshUser.fulfilled](state, action) {
+    [refreshUserOperation.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [refreshUser.rejected](state) {
+    [refreshUserOperation.rejected](state) {
       state.isRefreshing = false;
     },
   },
+
+  //====================================
+
+  // reducers: {
+  //   changeFilter: {
+  //     reducer(state, { payload }) {
+  //       state.filter = payload;
+  //     },
+  //     prepare(e) {
+  //       return {
+  //         payload: e.target.value,
+  //       };
+  //     },
+  //   },
+  // },
+  // extraReducers: builder => {
+  //   builder
+  //     .addCase(registerOperation.fulfilled, (state, { payload }) => {
+  //       state.items.push(payload);
+  //     })
+  //     .addCase(logInOperation.fulfilled, (state, { payload }) => {
+  //       state.items = payload;
+  //     })
+  //     .addCase(logOutOperation.fulfilled, (state, { payload }) => {
+  //       state.items = state.items.filter(el => el.id !== payload);
+  //     })
+  //     .addCase(refreshUserOperation.fulfilled, (state, { payload }) => {
+  //       const idx = state.items.findIndex(el => el.id === payload.id);
+  //       state.items[idx] = { ...state.items[idx], ...payload };
+  //     })
+  //     .addMatcher(
+  //       action => {
+  //         if (
+  //           action.type.startsWith('todo') &&
+  //           action.type.endsWith('/pending')
+  //         )
+  //           return true;
+  //       },
+  //       state => {
+  //         state.isLoading = true;
+  //       }
+  //     )
+  //     .addMatcher(
+  //       action => {
+  //         if (
+  //           action.type.startsWith('todo') &&
+  //           action.type.endsWith('/rejected')
+  //         )
+  //           return true;
+  //       },
+  //       (state, { payload }) => {
+  //         state.isLoading = false;
+  //         state.error = payload;
+  //       }
+  //     )
+  //     .addMatcher(
+  //       action => {
+  //         if (
+  //           action.type.startsWith('todo') &&
+  //           action.type.endsWith('/fulfilled')
+  //         )
+  //           return true;
+  //       },
+  //       state => {
+  //         state.isLoading = false;
+  //         state.error = null;
+  //       }
+  //     );
+  // },
 });
 
 export const authReducer = authSlice.reducer;
