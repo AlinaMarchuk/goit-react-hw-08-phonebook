@@ -1,3 +1,11 @@
-.mail {
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 700;
   color: black;
 }

@@ -1,5 +1,7 @@
-import styles from './Filter.module.css';
+//import styles from './Filter.module.css';
 import { useDispatch } from 'react-redux';
+import { TextField, InputAdornment } from '@mui/material';
+import ContentPasteSearchOutlinedIcon from '@mui/icons-material/ContentPasteSearchOutlined';
 import { setFilter } from 'redux/contacts/filterSlice';
 
 const Filter = () => {
@@ -7,11 +9,27 @@ const Filter = () => {
 
   return (
     <>
-      <p className={styles.p}>Find contacts by name</p>
-      <input
+      {/* <p className={styles.p}>Find contacts by name</p> */}
+      {/* <input
         className={styles.input}
         onChange={e => dispatch(setFilter(e))}
         type="text"
+        name="filter"
+      /> */}
+      <TextField
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <ContentPasteSearchOutlinedIcon />
+            </InputAdornment>
+          ),
+        }}
+        onChange={e => dispatch(setFilter(e))}
+        fullWidth
+        id="input-with-icon-textfield"
+        placeholder="Search by name"
+        type="text"
+        variant="standard"
         name="filter"
       />
     </>

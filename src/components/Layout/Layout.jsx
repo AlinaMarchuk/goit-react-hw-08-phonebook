@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <AppBar />
       <main>
-        <section>
+        <section className={styles.section}>
           <div className={styles.container}>
             <Suspense>
               <Outlet />

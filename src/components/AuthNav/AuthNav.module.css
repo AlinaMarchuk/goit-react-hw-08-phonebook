@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
 .link {
   text-decoration: none;
   color: black;
@@ -5,9 +11,9 @@
 }
 
 .link:hover {
-  color: rgb(157, 32, 210);
+  color: #1976d2;
 }
 
 .active {
-  color: rgb(157, 32, 210);
+  color: #1976d2;
 }

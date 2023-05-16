@@ -1,5 +1,18 @@
-.title {
+/* .title {
   margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 40px;
+  margin-bottom: 20px;
+  font-size: 30px;
+} */
+
+.wrapper {
+  padding: 0 25px;
+  max-width: 1200px;
+  width: 450px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-size: 30px;
 }

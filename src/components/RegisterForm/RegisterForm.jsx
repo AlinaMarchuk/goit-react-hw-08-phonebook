@@ -15,15 +15,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
 import { registerOperation } from 'redux/auth/operations';
 
-// export default function InputAdornments() {
-//     const [showPassword, setShowPassword] = React.useState(false);
-
-//     const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-//     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-//       event.preventDefault();
-//     };}
-
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -51,11 +42,7 @@ const RegisterForm = () => {
     <Box
       onSubmit={onFormSubmit}
       component="form"
-      sx={{
-        // '& .MuiFormControl-root': { m: 1, width: '25ch' },
-        width: 400,
-      }}
-      noValidate
+      //noValidate
       autoComplete="off"
     >
       <Stack direction={'column'} spacing={2}>
@@ -73,11 +60,12 @@ const RegisterForm = () => {
           label="Email"
           name="email"
         />
-        <FormControl fullWidth variant="outlined">
+        <FormControl required fullWidth variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
+            required
             id="outlined-adornment-password"
             name="password"
             type={showPassword ? 'text' : 'password'}

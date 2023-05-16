@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts, getFilter } from 'redux/contacts/selectors';
 import { useEffect } from 'react';
+import { Button, CircularProgress } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './ContactsList.module.css';
 import {
   getContactsOperation,
@@ -34,16 +36,19 @@ const ContactsList = () => {
               <p className={styles.p}>
                 {name}: {phone}
               </p>
-              <button
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<DeleteIcon />}
                 type="button"
                 onClick={() => dispatch(deleteContactOperation(id))}
               >
                 Delete
-              </button>
+              </Button>
             </li>
           ))}
       </ul>
-      {loading && <h3>Loading...</h3>}
+      {loading && <CircularProgress />}
     </>
   );
 };

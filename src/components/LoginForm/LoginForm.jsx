@@ -41,14 +41,10 @@ const LoginForm = () => {
     <Box
       onSubmit={onFormSubmit}
       component="form"
-      sx={{
-        //'& .MuiFormControl-root': { m: 1, width: '25ch' },
-        width: 400,
-      }}
-      noValidate
+      //noValidate
       autoComplete="off"
     >
-      <Stack sx={{ width: 400 }} direction={'column'} spacing={2}>
+      <Stack direction={'column'} spacing={2}>
         <TextField
           fullWidth
           required
@@ -56,16 +52,12 @@ const LoginForm = () => {
           label="Email"
           name="email"
         />
-        <FormControl
-          fullWidth
-          required
-          // sx={{ m: 1, width: '25ch' }}
-          variant="outlined"
-        >
+        <FormControl required fullWidth variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
+            required
             id="outlined-adornment-password"
             name="password"
             type={showPassword ? 'text' : 'password'}
