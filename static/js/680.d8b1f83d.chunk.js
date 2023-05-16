@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[680],{680:function(e,t,a){a.r(t);var r=a(184);t.default=function(){return(0,r.jsx)(r.Fragment,{children:(0,r.jsx)("h1",{children:"Contacts manager welcome page"})})}}}]);
-//# sourceMappingURL=680.d8b1f83d.chunk.js.map
