@@ -1,4 +1,3 @@
-//import styles from './Filter.module.css';
 import { useDispatch } from 'react-redux';
 import { TextField, InputAdornment } from '@mui/material';
 import ContentPasteSearchOutlinedIcon from '@mui/icons-material/ContentPasteSearchOutlined';
@@ -9,13 +8,6 @@ const Filter = () => {
 
   return (
     <>
-      {/* <p className={styles.p}>Find contacts by name</p> */}
-      {/* <input
-        className={styles.input}
-        onChange={e => dispatch(setFilter(e))}
-        type="text"
-        name="filter"
-      /> */}
       <TextField
         InputProps={{
           startAdornment: (

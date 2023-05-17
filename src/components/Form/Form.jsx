@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, Paper, Stack, TextField, Button } from '@mui/material';
 import { getContacts } from 'redux/contacts/selectors';
 import { postContactOperation } from '../../redux/contacts/operations';
-//import styles from './Form.module.css';
 
 const Form = () => {
   const contacts = useSelector(getContacts);
@@ -12,8 +11,8 @@ const Form = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const name = event.currentTarget.elements.name.value;
-    const phone = event.currentTarget.elements.number.value;
-    const newContact = { name, phone };
+    const number = event.currentTarget.elements.number.value;
+    const newContact = { name, number };
     contacts.some(contact => name === contact.name)
       ? alert(`${name} is already in contacts.`)
       : dispatch(postContactOperation(newContact));
@@ -23,24 +22,8 @@ const Form = () => {
 
   return (
     <Paper elevation={3} sx={{ p: 2, mt: 5 }}>
-      <Box
-        onSubmit={handleSubmit}
-        component="form"
-        //noValidate
-        autoComplete="off"
-      >
+      <Box onSubmit={handleSubmit} component="form" autoComplete="off">
         <Stack direction={'column'} spacing={3}>
-          {/* <label className={styles.label}>
-              <span className={styles.labelText}>Name</span>
-              <input
-                className={styles.input}
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-              />
-            </label> */}
           <TextField
             fullWidth
             required
@@ -50,17 +33,6 @@ const Form = () => {
             type="text"
             name="name"
           />
-          {/* <label className={styles.label}>
-              <span className={styles.labelText}>Number</span>
-              <input
-                className={styles.input}
-                type="tel"
-                name="number"
-                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                required
-              />
-            </label> */}
           <TextField
             fullWidth
             required
@@ -80,5 +52,3 @@ const Form = () => {
 };
 
 export default Form;
-//className={styles.btn}
-//className={styles.form}

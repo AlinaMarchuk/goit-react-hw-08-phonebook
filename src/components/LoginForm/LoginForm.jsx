@@ -17,14 +17,10 @@ import { logInOperation } from 'redux/auth/operations';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-
   const handleClickShowPassword = () => setShowPassword(show => !show);
-
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
-
-  // ==========================================
 
   const dispatch = useDispatch();
 
@@ -38,12 +34,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Box
-      onSubmit={onFormSubmit}
-      component="form"
-      //noValidate
-      autoComplete="off"
-    >
+    <Box onSubmit={onFormSubmit} component="form" autoComplete="off">
       <Stack direction={'column'} spacing={2}>
         <TextField
           fullWidth
