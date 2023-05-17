@@ -29,7 +29,6 @@ const LoginForm = () => {
     const email = e.currentTarget.elements.email.value;
     const password = e.currentTarget.elements.password.value;
     const userInfo = { email, password };
-    console.log(userInfo);
     dispatch(logInOperation(userInfo));
   };
 

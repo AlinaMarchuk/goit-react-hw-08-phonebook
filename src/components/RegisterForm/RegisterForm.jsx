@@ -30,7 +30,6 @@ const RegisterForm = () => {
     const email = e.currentTarget.elements.email.value;
     const password = e.currentTarget.elements.password.value;
     const userInfo = { name, email, password };
-    console.log(userInfo);
     dispatch(registerOperation(userInfo));
   };
 
